@@ -2,3 +2,4 @@
 TOKEN = DISCORD_BOT_TOKEN
 ADMIN = DISCORD_USER_ID_(example: 123456789101112)
 PREFIX="!"
+SCRIPTS_FOLDER=/home/myuser/folder/   (Use full path and end with / )
