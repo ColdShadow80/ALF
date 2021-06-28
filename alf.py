@@ -33,8 +33,11 @@ async def restart(ctx, process):
 async def script(ctx, process):
     if not isadmin(ctx):
         return
-    os.system(f"{SCRIPTS_FOLDER}{process}.sh")
-    await ctx.send(f"Runing {process}.sh")
+    try:
+        output = subprocess.check_output(f"{process}", shell=True)
+    except Exception as e:
+        output = str(e)
+    await ctx.send(f"Runing {output}")
 
 @bot.event
 async def on_ready():
