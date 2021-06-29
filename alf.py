@@ -14,10 +14,10 @@ ADMIN = config['GENERAL']['ADMIN']
 PREFIX = config['GENERAL']['PREFIX']
 SCRIPTS_FOLDER = config['GENERAL']['SCRIPTS_FOLDER']                                                 
                                                                                   
-bot = commands.Bot(command_prefix="PREFIX", case_insensitive=1)                        
+bot = commands.Bot(command_prefix=PREFIX, case_insensitive=1)                        
                                                                                   
 def isadmin(ctx):                                                                 
-    if ctx.author.id in [ADMIN]:                                     
+    if ctx.author.id in ADMIN:                                     
         return True                                                               
     else:                                                                         
         return False                                                              
@@ -34,4 +34,4 @@ async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
     
-bot.run("TOKEN")
+bot.run(TOKEN)
