@@ -1,6 +1,8 @@
 import discord
 import os
 import configparser
+import asyncio
+import subprocess
 
 from discord.ext import commands
 
@@ -8,17 +10,17 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 TOKEN = config['GENERAL']['TOKEN']
-ownerID = config['GENERAL']['ownerID']
+ADMIN = config['GENERAL']['ADMIN']
 PREFIX = config['GENERAL']['PREFIX']
 SCRIPTS_FOLDER = config['GENERAL']['SCRIPTS_FOLDER']
 
 bot = commands.Bot(command_prefix=PREFIX, case_insensitive=1)
 
 def isadmin(ctx):
-    if ctx.author.id in [ownerID]:  # THIS PART DOES NOT WORK AND USER ID HAS TO BE INSteAD OF ADMIN VARIABLE FOR NOW
+    if str(ctx.author.id) in [ADMIN]:
         return True
     else:
-        print(f'{ctx.author.id} is not allowed, user does not match owner ID ', ownerID )
+        print(f'{ctx.author.id} is not', ADMIN, type({ctx.author.id}), type(ADMIN) )
         return False
 
 
@@ -37,7 +39,7 @@ async def script(ctx, process):
         output = subprocess.check_output(f"{process}", shell=True)
     except Exception as e:
         output = str(e)
-    await ctx.send(f"Runing {output}")
+    await ctx.send(f"Runing {output} ")
 
 @bot.event
 async def on_ready():
