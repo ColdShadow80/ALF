@@ -8,17 +8,17 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 TOKEN = config['GENERAL']['TOKEN']
-ADMIN = config['GENERAL']['ADMIN']
+ownerID = config['GENERAL']['ownerID']
 PREFIX = config['GENERAL']['PREFIX']
 SCRIPTS_FOLDER = config['GENERAL']['SCRIPTS_FOLDER']
 
 bot = commands.Bot(command_prefix=PREFIX, case_insensitive=1)
 
 def isadmin(ctx):
-    if ctx.author.id in [ADMIN]:  # THIS PART DOES NOT WORK AND USER ID HAS TO BE INSteAD OF ADMIN VARIABLE FOR NOW
+    if ctx.author.id in [ownerID]:  # THIS PART DOES NOT WORK AND USER ID HAS TO BE INSteAD OF ADMIN VARIABLE FOR NOW
         return True
     else:
-        print(f'{ctx.author.id} is not', ADMIN, type({ctx.author.id}), type(ADMIN) )
+        print(f'{ctx.author.id} is not allowed, user does not match owner ID ', ownerID )
         return False
 
 
