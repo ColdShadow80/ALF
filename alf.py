@@ -29,7 +29,7 @@ async def restart(ctx, process):
     os.system(f"pm2 restart {process}")                                           
     await ctx.send(f"Restarted {process}")
 
-    @bot.event
+@bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
